@@ -73,12 +73,12 @@
 		B5AD049617A88A29009893AF /* CoreDataServiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataServiceTests-Info.plist"; sourceTree = "<group>"; };
 		B5AD049817A88A29009893AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5AD049A17A88A29009893AF /* CoreDataServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataServiceTests.m; sourceTree = "<group>"; };
-		B5AD04AA17A88AE2009893AF /* GlobalManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalManagedObjectContext.h; path = CoreDataService/GlobalManagedObjectContext.h; sourceTree = "<group>"; };
-		B5AD04AB17A88AE2009893AF /* GlobalManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalManagedObjectContext.m; path = CoreDataService/GlobalManagedObjectContext.m; sourceTree = "<group>"; };
-		B5AD04AE17A88B16009893AF /* CoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataService.h; path = CoreDataService/CoreDataService.h; sourceTree = "<group>"; };
-		B5AD04AF17A88B16009893AF /* CoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataService.m; path = CoreDataService/CoreDataService.m; sourceTree = "<group>"; };
-		B5AD04B217A88B39009893AF /* GlobalPersistantStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalPersistantStoreCoordinator.m; path = CoreDataService/GlobalPersistantStoreCoordinator.m; sourceTree = "<group>"; };
-		B5AD04B317A88B39009893AF /* GlobalPersistantStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalPersistantStoreCoordinator.h; path = CoreDataService/GlobalPersistantStoreCoordinator.h; sourceTree = "<group>"; };
+		B5AD04AA17A88AE2009893AF /* GlobalManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalManagedObjectContext.h; sourceTree = "<group>"; };
+		B5AD04AB17A88AE2009893AF /* GlobalManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalManagedObjectContext.m; sourceTree = "<group>"; };
+		B5AD04AE17A88B16009893AF /* CoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
+		B5AD04AF17A88B16009893AF /* CoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataService.m; sourceTree = "<group>"; };
+		B5AD04B217A88B39009893AF /* GlobalPersistantStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPersistantStoreCoordinator.m; sourceTree = "<group>"; };
+		B5AD04B317A88B39009893AF /* GlobalPersistantStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPersistantStoreCoordinator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +205,6 @@
 				B5AD04AB17A88AE2009893AF /* GlobalManagedObjectContext.m */,
 			);
 			name = Service;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
