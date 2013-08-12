@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B518C24817B3FE4200BFF9E0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B518C24617B3FE4200BFF9E0 /* Model.xcdatamodeld */; };
+		B518C24C17B3FE9D00BFF9E0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = B518C24B17B3FE9D00BFF9E0 /* Person.m */; };
+		B518C25417B4008C00BFF9E0 /* Person+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = B518C25317B4008C00BFF9E0 /* Person+Ext.m */; };
 		B526E21617A97430003D3B07 /* ErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B526E21517A97430003D3B07 /* ErrorUtil.m */; };
 		B526E21717A97430003D3B07 /* ErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B526E21517A97430003D3B07 /* ErrorUtil.m */; };
 		B526E21A17A9745A003D3B07 /* NSString+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = B526E21917A9745A003D3B07 /* NSString+Ext.m */; };
@@ -47,6 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B518C24717B3FE4200BFF9E0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B518C24A17B3FE9D00BFF9E0 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		B518C24B17B3FE9D00BFF9E0 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		B518C24E17B3FEC100BFF9E0 /* AllManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllManagedObjects.h; sourceTree = "<group>"; };
+		B518C25217B4008C00BFF9E0 /* Person+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+Ext.h"; sourceTree = "<group>"; };
+		B518C25317B4008C00BFF9E0 /* Person+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+Ext.m"; sourceTree = "<group>"; };
 		B526E21417A97430003D3B07 /* ErrorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorUtil.h; sourceTree = "<group>"; };
 		B526E21517A97430003D3B07 /* ErrorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorUtil.m; sourceTree = "<group>"; };
 		B526E21817A9745A003D3B07 /* NSString+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Ext.h"; sourceTree = "<group>"; };
@@ -105,6 +114,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B518C24917B3FE6D00BFF9E0 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B518C24A17B3FE9D00BFF9E0 /* Person.h */,
+				B518C24B17B3FE9D00BFF9E0 /* Person.m */,
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		B518C24D17B3FEAC00BFF9E0 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B518C25117B4007500BFF9E0 /* ManagedObjectExtensions */,
+				B518C24617B3FE4200BFF9E0 /* Model.xcdatamodeld */,
+				B518C24917B3FE6D00BFF9E0 /* ManagedObjects */,
+				B518C24E17B3FEC100BFF9E0 /* AllManagedObjects.h */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		B518C25117B4007500BFF9E0 /* ManagedObjectExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B518C25217B4008C00BFF9E0 /* Person+Ext.h */,
+				B518C25317B4008C00BFF9E0 /* Person+Ext.m */,
+			);
+			name = ManagedObjectExtensions;
+			sourceTree = "<group>";
+		};
 		B526E22417A974EA003D3B07 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +198,7 @@
 				B5AD048517A88A29009893AF /* ViewController.m */,
 				B5AD048717A88A29009893AF /* Images.xcassets */,
 				B5AD047617A88A29009893AF /* Supporting Files */,
+				B518C24D17B3FEAC00BFF9E0 /* Persistence */,
 			);
 			path = CoreDataService;
 			sourceTree = "<group>";
@@ -309,9 +348,12 @@
 				B5AD04AC17A88AE2009893AF /* GlobalManagedObjectContext.m in Sources */,
 				B526E21617A97430003D3B07 /* ErrorUtil.m in Sources */,
 				B5AD04B417A88B39009893AF /* GlobalPersistantStoreCoordinator.m in Sources */,
+				B518C24C17B3FE9D00BFF9E0 /* Person.m in Sources */,
 				B5AD048017A88A29009893AF /* AppDelegate.m in Sources */,
 				B526E21A17A9745A003D3B07 /* NSString+Ext.m in Sources */,
 				B5AD04B017A88B16009893AF /* CoreDataService.m in Sources */,
+				B518C25417B4008C00BFF9E0 /* Person+Ext.m in Sources */,
+				B518C24817B3FE4200BFF9E0 /* Model.xcdatamodeld in Sources */,
 				B5AD047C17A88A29009893AF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +568,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B518C24617B3FE4200BFF9E0 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B518C24717B3FE4200BFF9E0 /* Model.xcdatamodel */,
+			);
+			currentVersion = B518C24717B3FE4200BFF9E0 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B5AD046417A88A29009893AF /* Project object */;
 }

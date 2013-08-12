@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#define kDatastoreName @"MakeItReal_v2"
+#define kDatastoreName @"Model"
 
 @interface GlobalPersistantStoreCoordinator : NSObject 
 
