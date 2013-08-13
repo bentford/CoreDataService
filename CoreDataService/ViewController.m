@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CoreDataService.h"
 #import "AllManagedObjects.h"
+#import "GCDUtilities.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,7 @@
 
 @implementation ViewController
 {
-    NSTimer *timer;
+
 }
 
 - (void)viewDidLoad
@@ -37,14 +38,17 @@
         [CoreDataService save];
     }
 
-    timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkForRecord:) userInfo:nil repeats:NO];
+    [self checkForRecord];
+
 }
 
-- (void)checkForRecord:(NSTimer *)timer
+- (void)checkForRecord
 {
-    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
-    NSLog(@"Person: %@", person);
-
-    timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkForRecord:) userInfo:nil repeats:NO];
+    dispatch_after_delay_ext(3.0f, dispatch_get_main_queue(), ^{
+        Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
+        NSLog(@"Person: %@", person);
+        [self checkForRecord];
+    });
 }
+
 @end

@@ -37,6 +37,7 @@
 		B5AD04B117A88B16009893AF /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD04AF17A88B16009893AF /* CoreDataService.m */; };
 		B5AD04B417A88B39009893AF /* GlobalPersistantStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD04B217A88B39009893AF /* GlobalPersistantStoreCoordinator.m */; };
 		B5AD04B517A88B39009893AF /* GlobalPersistantStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD04B217A88B39009893AF /* GlobalPersistantStoreCoordinator.m */; };
+		B5BC814117B9A5D300B28A34 /* GCDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC814017B9A5D300B28A34 /* GCDUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		B5AD04AF17A88B16009893AF /* CoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataService.m; sourceTree = "<group>"; };
 		B5AD04B217A88B39009893AF /* GlobalPersistantStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPersistantStoreCoordinator.m; sourceTree = "<group>"; };
 		B5AD04B317A88B39009893AF /* GlobalPersistantStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPersistantStoreCoordinator.h; sourceTree = "<group>"; };
+		B5BC813F17B9A5D300B28A34 /* GCDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDUtilities.h; sourceTree = "<group>"; };
+		B5BC814017B9A5D300B28A34 /* GCDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 		B526E22417A974EA003D3B07 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B5BC813F17B9A5D300B28A34 /* GCDUtilities.h */,
+				B5BC814017B9A5D300B28A34 /* GCDUtilities.m */,
 				B526E22017A974AE003D3B07 /* NSRangeExt.h */,
 				B526E22117A974AE003D3B07 /* NSRangeExt.m */,
 				B526E21C17A9746D003D3B07 /* NSArray+Ext.h */,
@@ -192,13 +197,13 @@
 			isa = PBXGroup;
 			children = (
 				B5AD04A517A88AA1009893AF /* Service */,
+				B518C24D17B3FEAC00BFF9E0 /* Persistence */,
 				B5AD047E17A88A29009893AF /* AppDelegate.h */,
 				B5AD047F17A88A29009893AF /* AppDelegate.m */,
 				B5AD048417A88A29009893AF /* ViewController.h */,
 				B5AD048517A88A29009893AF /* ViewController.m */,
 				B5AD048717A88A29009893AF /* Images.xcassets */,
 				B5AD047617A88A29009893AF /* Supporting Files */,
-				B518C24D17B3FEAC00BFF9E0 /* Persistence */,
 			);
 			path = CoreDataService;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				B526E21617A97430003D3B07 /* ErrorUtil.m in Sources */,
 				B5AD04B417A88B39009893AF /* GlobalPersistantStoreCoordinator.m in Sources */,
 				B518C24C17B3FE9D00BFF9E0 /* Person.m in Sources */,
+				B5BC814117B9A5D300B28A34 /* GCDUtilities.m in Sources */,
 				B5AD048017A88A29009893AF /* AppDelegate.m in Sources */,
 				B526E21A17A9745A003D3B07 /* NSString+Ext.m in Sources */,
 				B5AD04B017A88B16009893AF /* CoreDataService.m in Sources */,
@@ -476,10 +482,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ben Ford (39PAC2A863)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataService/CoreDataService-Prefix.pch";
 				INFOPLIST_FILE = "CoreDataService/CoreDataService-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "82015161-92A3-4530-BE34-3EFAF6CE337A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -489,10 +497,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ben Ford";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataService/CoreDataService-Prefix.pch";
 				INFOPLIST_FILE = "CoreDataService/CoreDataService-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "82015161-92A3-4530-BE34-3EFAF6CE337A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
