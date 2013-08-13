@@ -10,14 +10,21 @@
 #import "CoreDataService.h"
 #import "AllManagedObjects.h"
 #import "GCDUtilities.h"
+#import "GlobalPersistantStoreCoordinator.h"
+#import "GlobalManagedObjectContext.h"
 
-@interface ViewController ()
+typedef enum {
+    DatastoreLocationActive = 0,
+    DatastoreLocationSync,
+    DatastoreLocationWorker,
+} DatastoreLocation;
 
+@interface ViewController()
 @end
 
 @implementation ViewController
 {
-
+    NSOperationQueue *queue;
 }
 
 - (void)viewDidLoad
@@ -30,25 +37,128 @@
 {
     [super viewDidAppear:animated];
 
-    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
+    queue = [[NSOperationQueue alloc] init];
+    queue.maxConcurrentOperationCount = 1;
+
+
+    [self createRecordIfNeeded];
+    [self checkForRecord];
+
+
+    [queue addOperationWithBlock:^{
+        [self copyCurrentDatastoreFileToActive];
+        [self reinitializeDatastore];
+    }];
+
+}
+
+- (void)createRecordIfNeeded
+{
+    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class])
+                                      byAttribute:@"name" withValue:@"Bob"];
 
     if (person == nil) {
         person = [CoreDataService makeObjectWithEntityName:NSStringFromClass([Person class])];
         person.name = @"Bob";
         [CoreDataService save];
     }
+}
 
+- (void)repeatedlyCheckForRecord
+{
     [self checkForRecord];
-
+    dispatch_after_delay_ext(3.0f, dispatch_get_main_queue(), ^{
+        [self repeatedlyCheckForRecord];
+    });
 }
 
 - (void)checkForRecord
 {
-    dispatch_after_delay_ext(3.0f, dispatch_get_main_queue(), ^{
-        Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
-        NSLog(@"Person: %@", person);
-        [self checkForRecord];
+    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
+    NSLog(@"Person: %@", person);
+}
+
+- (void)reinitializeDatastore
+{
+    // this is required for new datastore file to be read from disk
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[GlobalPersistantStoreCoordinator sharedService] reinitializeSharedService];
+        [[GlobalManagedObjectContext sharedService] reinitializeGlobalContext];
     });
+
+}
+
+- (void)copyCurrentDatastoreFileToActive
+{
+
+    // create second persistant store to simulate the sync database
+    // we're not actually syncing anything in the simple app
+    NSString *path = [self pathForDatabaseAtLocation:DatastoreLocationSync];
+    GlobalPersistantStoreCoordinator *syncStoreCoordinator = [[GlobalPersistantStoreCoordinator alloc]
+                                                              initWithStorePath:path];
+
+    NSString *activeDatabasePath = [GlobalPersistantStoreCoordinator globalDatastoreFilePath];
+    NSString *syncDatastorePath = syncStoreCoordinator.datastorePath;
+
+    // remove active database file entirely
+    NSError *deleteFileError = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:activeDatabasePath error:&deleteFileError];
+    if( deleteFileError != nil ) {
+        NSLog(@"FATAL ERROR SYNCING: %@", [deleteFileError localizedDescription]);
+        abort();
+    }
+
+    // copy sync database into to active database path
+    NSError *copyFileError = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:syncDatastorePath toPath:activeDatabasePath error:&copyFileError];
+    if( copyFileError != nil ) {
+        NSLog(@"FATAL ERROR: copying current path to active path. Details: '%@'", [copyFileError localizedDescription]);
+        abort();
+    }
+
+    // if we're syncing, copy this datastore to worker path.
+    if ([syncDatastorePath isEqualToString:[self pathForDatabaseAtLocation:DatastoreLocationSync]]) {
+        NSString *workerPath = [self pathForDatabaseAtLocation:DatastoreLocationWorker];
+
+        // remove worker database file entirely
+        NSError *deleteFileError = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:workerPath error:&deleteFileError];
+        if( deleteFileError != nil ) {
+            NSLog(@"WARNING: could not delete worker path. Details: %@", [deleteFileError localizedDescription]);
+        }
+
+
+        NSError *copyFileError = nil;
+        [[NSFileManager defaultManager] copyItemAtPath:syncDatastorePath toPath:workerPath error:&copyFileError];
+        if( copyFileError != nil ) {
+            NSLog(@"FATAL ERROR: copying current path to worker path. Details: '%@'", [copyFileError localizedDescription]);
+            abort();
+        }
+    }
+}
+
+- (NSString *)pathForDatabaseAtLocation:(DatastoreLocation)datastoreLocation {
+    NSString *activeDatabasePath = [GlobalPersistantStoreCoordinator globalDatastoreFilePath];
+
+    NSString *locationPrefix;
+
+    switch (datastoreLocation) {
+        case DatastoreLocationActive:
+            locationPrefix = @"";
+            break;
+        case DatastoreLocationSync:
+            locationPrefix = @"_sync";
+            break;
+        case DatastoreLocationWorker:
+            locationPrefix = @"_worker";
+            break;
+    }
+
+    NSString *extensionWithDot = [NSString stringWithFormat:@".%@",[activeDatabasePath pathExtension]];
+    NSString *replaceWith = [NSString stringWithFormat:@"%@.%@", locationPrefix, [activeDatabasePath pathExtension]];
+    NSString *finalDatastorePath = [activeDatabasePath stringByReplacingOccurrencesOfString:extensionWithDot withString:replaceWith];
+
+    return finalDatastorePath;
 }
 
 @end
