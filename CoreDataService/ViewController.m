@@ -41,14 +41,10 @@ typedef enum {
     queue.maxConcurrentOperationCount = 1;
 
 
-    [self createRecordIfNeeded];
-    [self checkForRecord];
+    [self repeatedlyCheckForRecord];
 
 
-    [queue addOperationWithBlock:^{
-        [self copyCurrentDatastoreFileToActive];
-        [self reinitializeDatastore];
-    }];
+
 
 }
 
@@ -58,6 +54,7 @@ typedef enum {
                                       byAttribute:@"name" withValue:@"Bob"];
 
     if (person == nil) {
+        NSLog(@"Creating bob");
         person = [CoreDataService makeObjectWithEntityName:NSStringFromClass([Person class])];
         person.name = @"Bob";
         [CoreDataService save];
@@ -66,7 +63,14 @@ typedef enum {
 
 - (void)repeatedlyCheckForRecord
 {
+    [self createRecordIfNeeded];
     [self checkForRecord];
+
+    [queue addOperationWithBlock:^{
+        [self copyCurrentDatastoreFileToActive];
+        [self reinitializeDatastore];
+    }];
+
     dispatch_after_delay_ext(3.0f, dispatch_get_main_queue(), ^{
         [self repeatedlyCheckForRecord];
     });
@@ -74,8 +78,10 @@ typedef enum {
 
 - (void)checkForRecord
 {
-    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class]) byAttribute:@"name" withValue:@"Bob"];
-    NSLog(@"Person: %@", person);
+    NSArray *people = [CoreDataService fetchEntities:NSStringFromClass([Person class])];
+    for (Person *person in people) {
+        NSLog(@"person: %@", person.name);
+    }
 }
 
 - (void)reinitializeDatastore
@@ -96,6 +102,8 @@ typedef enum {
     NSString *path = [self pathForDatabaseAtLocation:DatastoreLocationSync];
     GlobalPersistantStoreCoordinator *syncStoreCoordinator = [[GlobalPersistantStoreCoordinator alloc]
                                                               initWithStorePath:path];
+
+    [self fillDatastoreWithSomeDataUsingCoordinator:syncStoreCoordinator];
 
     NSString *activeDatabasePath = [GlobalPersistantStoreCoordinator globalDatastoreFilePath];
     NSString *syncDatastorePath = syncStoreCoordinator.datastorePath;
@@ -161,4 +169,12 @@ typedef enum {
     return finalDatastorePath;
 }
 
+- (void)fillDatastoreWithSomeDataUsingCoordinator:(GlobalPersistantStoreCoordinator *)syncStoreCoordinator
+{
+    NSManagedObjectContext *context = [syncStoreCoordinator allocManagedObjectContext];
+
+    Person *person = [CoreDataService context:context makeObjectWithEntityName:NSStringFromClass([Person class])];
+    person.name = @"Ben";
+    [CoreDataService contextSave:context requireMainThread:NO];
+}
 @end

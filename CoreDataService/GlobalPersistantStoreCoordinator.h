@@ -23,6 +23,7 @@
 - (NSManagedObjectModel *)model;
 
 - (NSManagedObjectContext *)allocContextUsingGlobalPersistentStore;
+- (NSManagedObjectContext *)allocManagedObjectContext;
 
 - (BOOL)dataFileExists;
 - (void)deleteDatastoreFile;

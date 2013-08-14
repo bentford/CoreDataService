@@ -80,6 +80,14 @@
     return context;
 }
 
+- (NSManagedObjectContext *)allocManagedObjectContext
+{
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
+    [context setPersistentStoreCoordinator:self.coordinator];
+
+    return context;
+}
+
 - (BOOL)dataFileExists {
     return [[NSFileManager defaultManager] fileExistsAtPath:datastorePath];
 }
