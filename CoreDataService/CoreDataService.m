@@ -327,3 +327,63 @@
     return context;
 }
 @end
+
+@implementation NSManagedObject(CoreDataService)
++ (id)makeEntityWithContext:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context makeObjectWithEntityName:NSStringFromClass([self class])];
+}
+
++ (id)fetchEntityByAttribute:(NSString *)attribute value:(NSString *)value context:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context fetchEntity:NSStringFromClass([self class])
+                        byAttribute:attribute withValue:value];
+}
+
++ (NSArray *)fetchEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context fetchEntities:NSStringFromClass([self class])
+                      withPredicate:predicate];
+}
+
++ (id)fetchEntityByObjectID:(NSManagedObjectID *)objectID context:(NSManagedObjectContext *)context
+{
+    id object = [CoreDataService context:context fetchEntityByObjectID:objectID];
+    if ([object isKindOfClass:[self class]] == NO) {
+        NSLog(@"ERROR: incorrect type fetched: %@ for %@", NSStringFromClass([object class]), NSStringFromClass([self class]));
+        abort();
+    }
+    return object;
+}
+
++ (NSSet *)fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet context:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context fetchEntitiesByObjectIdSet:objectIdSet];
+}
+
++ (NSArray *)fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray context:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context fetchEntitiesByObjectIdArray:objectIdArray];
+}
+
++ (NSArray *)fetchAllEntitiesWithContext:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context fetchEntities:NSStringFromClass([self class])];
+}
+
+- (void)deleteEntity
+{
+    [CoreDataService context:self.managedObjectContext deleteObject:self];
+}
+
++ (void)deleteEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
+{
+    [CoreDataService context:context deleteEntities:NSStringFromClass([self class]) withPredicate:predicate];
+}
+
+
+- (void)refreshEntityAndMergeChanges:(BOOL)mergeChanges
+{
+    [CoreDataService context:self.managedObjectContext refreshObject:self mergeChanges:mergeChanges];
+}
+@end

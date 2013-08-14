@@ -44,3 +44,20 @@
 + (NSArray *)arrayOfPropertiesWithName:(NSString *)propertyName fromObjects:(NSArray *)managedObjects skipNulls:(BOOL)skipNulls;
 #pragma mark -
 @end
+
+@interface NSManagedObject(CoreDataService)
++ (id)makeEntityWithContext:(NSManagedObjectContext *)context;
+
++ (NSArray *)fetchAllEntitiesWithContext:(NSManagedObjectContext *)context;
++ (id)fetchEntityByAttribute:(NSString *)attribute value:(NSString *)value context:(NSManagedObjectContext *)context;
++ (NSArray *)fetchEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context;
++ (id)fetchEntityByObjectID:(NSManagedObjectID *)objectID context:(NSManagedObjectContext *)context;
++ (NSSet *)fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet context:(NSManagedObjectContext *)context;
++ (NSArray *)fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray context:(NSManagedObjectContext *)context;
+
+
++ (void)deleteEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context;
+- (void)deleteEntity;
+
+- (void)refreshEntityAndMergeChanges:(BOOL)mergeChanges;
+@end
