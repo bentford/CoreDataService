@@ -50,12 +50,12 @@ typedef enum {
 
 - (void)createRecordIfNeeded
 {
-    Person *person = [CoreDataService fetchEntity:NSStringFromClass([Person class])
+    Person *person = [CoreDataService context:nil fetchEntity:NSStringFromClass([Person class])
                                       byAttribute:@"name" withValue:@"Bob"];
 
     if (person == nil) {
         NSLog(@"Creating bob");
-        person = [CoreDataService makeObjectWithEntityName:NSStringFromClass([Person class])];
+        person = [CoreDataService context:nil makeObjectWithEntityName:NSStringFromClass([Person class])];
         person.name = @"Bob";
         [CoreDataService save];
     }
@@ -78,7 +78,7 @@ typedef enum {
 
 - (void)checkForRecord
 {
-    NSArray *people = [CoreDataService fetchEntities:NSStringFromClass([Person class])];
+    NSArray *people = [CoreDataService context:nil fetchEntities:NSStringFromClass([Person class])];
     for (Person *person in people) {
         NSLog(@"person: %@", person.name);
     }

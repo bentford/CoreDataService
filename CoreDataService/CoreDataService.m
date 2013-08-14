@@ -12,107 +12,11 @@
 #define kDebugEmptyResults NO
 #define kDebugEmptyContextSaves NO
 
-@interface CoreDataService(PrivateMethods)
-+ (void)verifyThreadSafetyForContext:(NSManagedObjectContext *)context;
-@end
-
 @implementation CoreDataService
 
-#pragma mark Helper methods that use global CoreData Context (only valid to use on Main thread)
-+ (NSArray *)executeFetchRequest:(NSFetchRequest *)request {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context executeFetchRequest:request];
-}
-
-+ (id)fetchEntity:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate {
-    
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntity:entityName withPredicate:thePredicate];     
-}
-
-+ (id)fetchEntity:(NSString *)entityName byAttribute:(NSString *)attribute withValue:(id)value {
-    
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntity:entityName byAttribute:attribute withValue:value];
-}
-
-+ (NSArray *)fetchEntities:(NSString *)entityName byAttribute:(NSString *)attribute withValues:(NSArray *)values {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntities:entityName byAttribute:attribute withValues:values];
-}
-
-+ (id)makeObjectWithEntityName:(NSString *)name {
-    
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context makeObjectWithEntityName:name];
-}
-
-+ (NSArray *)fetchEntities:(NSString *)entityName {
-    
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntities:entityName];
-}
-
-+ (NSArray *)fetchEntities:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate {
-
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntities:entityName withPredicate:thePredicate];
-}
-
-+ (id)fetchEntityByObjectID:(NSManagedObjectID *)objectID {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [context objectWithID:objectID];
-}
-
-+ (NSSet *)fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntitiesByObjectIdSet:objectIdSet];
-}
-
-+ (NSArray *)fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService context:context fetchEntitiesByObjectIdArray:objectIdArray];
-}
-
-+ (void)refreshObject:(NSManagedObject *)objectToRefresh mergeChanges:(BOOL)mergeChanges {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    [CoreDataService context:context refreshObject:objectToRefresh mergeChanges:mergeChanges];
-}
-
-+ (BOOL)save {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    return [CoreDataService contextSave:context requireMainThread:YES];
-}
-
-+ (void)deleteObject:(id)object {
-    if( object == nil ) {
-        NSLog(@"GenericDataService: ignoring attempt to delete nil object");
-        return;
-    }
-    
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    [CoreDataService context:context deleteObject:object];
-}
-
-+ (void)deleteObjects:(NSSet *)objects {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    [CoreDataService context:context deleteObjects:objects];
-}
-
-+ (void)deleteEntitiesForClass:(Class)classToDelete {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    [CoreDataService context:context deleteEntitiesForClass:classToDelete];
-}
-
-+ (void)deleteEntities:(NSString *)entityName withPredicate:(NSPredicate *)predicate {
-    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
-    [CoreDataService context:context deleteEntities:entityName withPredicate:predicate];
-}
-#pragma mark -
-
-
-
-+ (NSArray *)context:(NSManagedObjectContext *)context executeFetchRequest:(NSFetchRequest *)request {
++ (NSArray *)context:(NSManagedObjectContext *)context executeFetchRequest:(NSFetchRequest *)request
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     NSError *error = nil;
@@ -128,7 +32,9 @@
         return results;
 }
 
-+ (id)context:(NSManagedObjectContext *)context fetchEntity:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate {
++ (id)context:(NSManagedObjectContext *)context fetchEntity:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -150,7 +56,9 @@
         return [results objectAtIndex:0];
 }
 
-+ (id)context:(NSManagedObjectContext *)context fetchEntity:(NSString *)entityName byAttribute:(NSString *)attribute withValue:(id)value {
++ (id)context:(NSManagedObjectContext *)context fetchEntity:(NSString *)entityName byAttribute:(NSString *)attribute withValue:(id)value
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     if (value == nil) {
@@ -183,6 +91,7 @@
 
 + (NSArray *)context:(NSManagedObjectContext *)context fetchEntities:(NSString *)entityName byAttribute:(NSString *)attribute withValues:(NSArray *)values
 {
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     if ([values count] == 0)
         return [NSArray array];
     
@@ -191,7 +100,9 @@
     return [CoreDataService context:context fetchEntities:entityName withPredicate:predicate];
 }
 
-+ (id)context:(NSManagedObjectContext *)context makeObjectWithEntityName:(NSString *)name {
++ (id)context:(NSManagedObjectContext *)context makeObjectWithEntityName:(NSString *)name
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     return [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];   
@@ -199,11 +110,13 @@
 
 + (NSArray *)context:(NSManagedObjectContext *)context fetchEntities:(NSString *)entityName
 {
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     return [CoreDataService context:context fetchEntities:entityName fetchPropertyValues:YES];
 }
 
 + (NSArray *)context:(NSManagedObjectContext *)context fetchEntities:(NSString *)entityName fetchPropertyValues:(BOOL)fetchPropertyValues
 {
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -218,7 +131,9 @@
     return results;
 }
 
-+ (NSArray *)context:(NSManagedObjectContext *)context fetchEntities:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate {
++ (NSArray *)context:(NSManagedObjectContext *)context fetchEntities:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -237,13 +152,17 @@
     return results;
 }
 
-+ (id)context:(NSManagedObjectContext *)context fetchEntityByObjectID:(NSManagedObjectID *)objectID {
++ (id)context:(NSManagedObjectContext *)context fetchEntityByObjectID:(NSManagedObjectID *)objectID
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     return [context objectWithID:objectID];
 }
 
-+ (NSSet *)context:(NSManagedObjectContext *)context fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet {
++ (NSSet *)context:(NSManagedObjectContext *)context fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     NSMutableSet *entities = [NSMutableSet setWithCapacity:[objectIdSet count]];
     for( NSManagedObjectID *objectId in [objectIdSet allObjects]) {
         id object = [CoreDataService context:context fetchEntityByObjectID:objectId];
@@ -252,7 +171,9 @@
     return entities;
 }
 
-+ (NSArray *)context:(NSManagedObjectContext *)context fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray {
++ (NSArray *)context:(NSManagedObjectContext *)context fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     NSMutableArray *entities = [NSMutableArray arrayWithCapacity:[objectIdArray count]];
     for( NSManagedObjectID *objectId in objectIdArray) {
         id object = [CoreDataService context:context fetchEntityByObjectID:objectId];
@@ -261,13 +182,23 @@
     return entities;
 }
 
-+ (void)context:(NSManagedObjectContext *)context refreshObject:(NSManagedObject *)objectToRefresh mergeChanges:(BOOL)mergeChanges {
++ (void)context:(NSManagedObjectContext *)context refreshObject:(NSManagedObject *)objectToRefresh mergeChanges:(BOOL)mergeChanges
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     [context refreshObject:objectToRefresh mergeChanges:mergeChanges];
 }
 
-+ (BOOL)contextSave:(NSManagedObjectContext *)context requireMainThread:(BOOL)shouldRequireMainThread {
++ (BOOL)save
+{
+    NSManagedObjectContext *context = [GlobalManagedObjectContext sharedService].globalContext;
+    return [self contextSave:context requireMainThread:YES];
+}
+
++ (BOOL)contextSave:(NSManagedObjectContext *)context requireMainThread:(BOOL)shouldRequireMainThread
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     if( shouldRequireMainThread == NO && [NSThread isMainThread] == YES ) {
@@ -321,14 +252,18 @@
     return wasSuccessful;
 }
 
-+ (void)context:(NSManagedObjectContext *)context deleteEntitiesForClass:(Class)classToDelete {
++ (void)context:(NSManagedObjectContext *)context deleteEntitiesForClass:(Class)classToDelete
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     NSArray *objectsToDelete = [CoreDataService context:context fetchEntities:NSStringFromClass(classToDelete) fetchPropertyValues:NO];
     [CoreDataService context:context deleteObjects:[NSSet setWithArray:objectsToDelete]];
 }
 
-+ (void)context:(NSManagedObjectContext *)context deleteObjects:(NSSet *)objects {
++ (void)context:(NSManagedObjectContext *)context deleteObjects:(NSSet *)objects
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     for (NSManagedObject *object in objects) {
@@ -336,18 +271,23 @@
     }
 }
 
-+ (void)context:(NSManagedObjectContext *)context deleteObject:(id)object {
++ (void)context:(NSManagedObjectContext *)context deleteObject:(id)object
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     [CoreDataService verifyThreadSafetyForContext:context];
     
     [context deleteObject:object];
 }
 
-+ (void)context:(NSManagedObjectContext *)context deleteEntities:(NSString *)entityName withPredicate:(NSPredicate *)predicate {
++ (void)context:(NSManagedObjectContext *)context deleteEntities:(NSString *)entityName withPredicate:(NSPredicate *)predicate
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
     NSArray *entitiesToDelete = [CoreDataService context:context fetchEntities:entityName withPredicate:predicate];
     [CoreDataService context:context deleteObjects:[NSSet setWithArray:entitiesToDelete]];
 }
 
-+ (NSArray *)arrayOfObjectIDsFromObjects:(NSArray *)managedObjectArray {
++ (NSArray *)arrayOfObjectIDsFromObjects:(NSArray *)managedObjectArray
+{
     NSMutableArray *objectIDs = [NSMutableArray arrayWithCapacity:[managedObjectArray count]];
     for( NSManagedObject *object in managedObjectArray )
         [objectIDs addObject:object.objectID];
@@ -355,7 +295,8 @@
     return objectIDs;
 }
 
-+ (NSArray *)arrayOfPropertiesWithName:(NSString *)propertyName fromObjects:(NSArray *)managedObjects skipNulls:(BOOL)skipNulls {
++ (NSArray *)arrayOfPropertiesWithName:(NSString *)propertyName fromObjects:(NSArray *)managedObjects skipNulls:(BOOL)skipNulls
+{
     NSMutableArray *propertyValues = [NSMutableArray arrayWithCapacity:[managedObjects count]];
     for (NSManagedObject *object in managedObjects) {
         id propertyValue = [object valueForKey:propertyName];
@@ -369,14 +310,20 @@
     
     return propertyValues;
 }
-@end
 
-@implementation CoreDataService(PrivateMethods)
-+ (void)verifyThreadSafetyForContext:(NSManagedObjectContext *)context {
-    
++ (void)verifyThreadSafetyForContext:(NSManagedObjectContext *)context
+{
     if( [NSThread isMainThread] == NO && context == [GlobalManagedObjectContext sharedService].globalContext ) {
         NSLog(@"ERROR: you are accessing the global context from a background thread!!!!!!!!!!!!!!!");
         abort();
     }
+}
+
++ (NSManagedObjectContext *)useGlobalContextIfNeeded:(NSManagedObjectContext *)context
+{
+    if (context == nil)
+        return [GlobalManagedObjectContext sharedService].globalContext;
+
+    return context;
 }
 @end

@@ -13,31 +13,7 @@
 
 #define kShouldAbortOnCoreDataThreadError YES
 
-@interface CoreDataService : NSObject {
-    
-}
-
-#pragma mark Global ManagedObjectContext (valid to use on Main thread only)
-+ (NSArray *)executeFetchRequest:(NSFetchRequest *)request;
-+ (id)fetchEntity:(NSString *)entityName byAttribute:(NSString *)attribute withValue:(id)value;
-+ (NSArray *)fetchEntities:(NSString *)entityName byAttribute:(NSString *)attribute withValues:(NSArray *)values;
-
-+ (NSArray *)fetchEntities:(NSString *)entityName;
-+ (NSArray *)fetchEntities:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate;
-+ (id)makeObjectWithEntityName:(NSString *)name;
-+ (id)fetchEntity:(NSString *)entityName withPredicate:(NSPredicate *)thePredicate;
-+ (id)fetchEntityByObjectID:(NSManagedObjectID *)objectID;
-+ (NSSet *)fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet;
-+ (NSArray *)fetchEntitiesByObjectIdArray:(NSArray *)objectIdArray;
-+ (void)refreshObject:(NSManagedObject *)objectToRefresh mergeChanges:(BOOL)mergeChanges;
-+ (void)deleteObject:(id)object;
-+ (void)deleteObjects:(NSSet *)objects;
-+ (void)deleteEntitiesForClass:(Class)classToDelete;
-+ (void)deleteEntities:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
-
-
-#pragma mark -
-
+@interface CoreDataService : NSObject
 
 + (NSArray *)context:(NSManagedObjectContext *)context executeFetchRequest:(NSFetchRequest *)request;
 
