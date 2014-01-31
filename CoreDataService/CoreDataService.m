@@ -7,7 +7,6 @@
 #import "CoreDataService.h"
 #import "ErrorUtil.h"
 #import "GlobalManagedObjectContext.h"
-#import "NSString+Ext.h"
 
 #define kDebugEmptyResults NO
 #define kDebugEmptyContextSaves NO
