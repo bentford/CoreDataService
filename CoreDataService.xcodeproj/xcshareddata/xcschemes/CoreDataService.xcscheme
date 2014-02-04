@@ -11,26 +11,12 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AD048C17A88A29009893AF"
-               BuildableName = "CoreDataServiceTests.xctest"
-               BlueprintName = "CoreDataServiceTests"
-               ReferencedContainer = "container:CoreDataService.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AD046B17A88A29009893AF"
-               BuildableName = "Demo.app"
-               BlueprintName = "Demo"
+               BlueprintIdentifier = "B5E7169D18A12FA1001E557F"
+               BuildableName = "libCoreDataService.a"
+               BlueprintName = "CoreDataService"
                ReferencedContainer = "container:CoreDataService.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AD048C17A88A29009893AF"
-               BuildableName = "CoreDataServiceTests.xctest"
-               BlueprintName = "CoreDataServiceTests"
-               ReferencedContainer = "container:CoreDataService.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

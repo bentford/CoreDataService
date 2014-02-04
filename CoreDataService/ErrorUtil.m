@@ -13,7 +13,7 @@
     NSArray *detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
     
     NSUInteger numErrors = [detailedErrors count];
-    NSMutableString *errorString = [NSMutableString stringWithFormat:@"%lu validation errors have occurred", numErrors];
+    NSMutableString *errorString = [NSMutableString stringWithFormat:@"%lu validation errors have occurred", (unsigned long)numErrors];
     
     if (numErrors > 3) {
         numErrors = 3;
