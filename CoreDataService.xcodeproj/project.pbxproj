@@ -29,6 +29,8 @@
 		B5E716DB18A130B8001E557F /* NSRangeExt.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716D918A130B8001E557F /* NSRangeExt.m */; };
 		B5E716E018A130F0001E557F /* Person+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716DF18A130F0001E557F /* Person+Ext.m */; };
 		B5E716E318A1314A001E557F /* libCoreDataService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7169E18A12FA1001E557F /* libCoreDataService.a */; };
+		B5E716FA18A1339A001E557F /* GlobalManagedObjectContext.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716C518A1301A001E557F /* GlobalManagedObjectContext.h */; };
+		B5E716FB18A1339A001E557F /* GlobalPersistantStoreCoordinator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716C718A1301A001E557F /* GlobalPersistantStoreCoordinator.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				B5E716FA18A1339A001E557F /* GlobalManagedObjectContext.h in CopyFiles */,
+				B5E716FB18A1339A001E557F /* GlobalPersistantStoreCoordinator.h in CopyFiles */,
 				B5E716A418A12FA1001E557F /* CoreDataService.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5E7165B18A12F0F001E557F /* CoreDataService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataService.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E7165B18A12F0F001E557F /* CoreDataService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CoreDataService.app; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E7165E18A12F0F001E557F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5E7166018A12F0F001E557F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B5E7166218A12F0F001E557F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -673,6 +677,7 @@
 				B5E716BC18A12FA2001E557F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
