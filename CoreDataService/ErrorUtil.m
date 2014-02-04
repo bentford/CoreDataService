@@ -12,8 +12,8 @@
 + (NSString *)stringFromMultipleErrors:(NSError *)error {
     NSArray *detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
     
-    unsigned numErrors = [detailedErrors count];
-    NSMutableString *errorString = [NSMutableString stringWithFormat:@"%u validation errors have occurred", numErrors];
+    NSUInteger numErrors = [detailedErrors count];
+    NSMutableString *errorString = [NSMutableString stringWithFormat:@"%lu validation errors have occurred", numErrors];
     
     if (numErrors > 3) {
         numErrors = 3;

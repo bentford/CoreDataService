@@ -19,11 +19,9 @@
 		B5AD047017A88A29009893AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD046F17A88A29009893AF /* Foundation.framework */; };
 		B5AD047217A88A29009893AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD047117A88A29009893AF /* CoreGraphics.framework */; };
 		B5AD047417A88A29009893AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD047317A88A29009893AF /* UIKit.framework */; };
-		B5AD047A17A88A29009893AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5AD047817A88A29009893AF /* InfoPlist.strings */; };
 		B5AD047C17A88A29009893AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD047B17A88A29009893AF /* main.m */; };
 		B5AD048017A88A29009893AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD047F17A88A29009893AF /* AppDelegate.m */; };
 		B5AD048617A88A29009893AF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD048517A88A29009893AF /* ViewController.m */; };
-		B5AD048817A88A29009893AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AD048717A88A29009893AF /* Images.xcassets */; };
 		B5AD048F17A88A29009893AF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD048E17A88A29009893AF /* XCTest.framework */; };
 		B5AD049017A88A29009893AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD046F17A88A29009893AF /* Foundation.framework */; };
 		B5AD049117A88A29009893AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AD047317A88A29009893AF /* UIKit.framework */; };
@@ -54,7 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B5E7160C189BEC36001E557F /* PBXContainerItemProxy */ = {
+		B5E7160F18A12D69001E557F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5AD046417A88A29009893AF /* Project object */;
 			proxyType = 1;
@@ -100,14 +98,12 @@
 		B5AD047117A88A29009893AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B5AD047317A88A29009893AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5AD047717A88A29009893AF /* CoreDataService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataService-Info.plist"; sourceTree = "<group>"; };
-		B5AD047917A88A29009893AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5AD047B17A88A29009893AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B5AD047D17A88A29009893AF /* CoreDataService-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataService-Prefix.pch"; sourceTree = "<group>"; };
 		B5AD047E17A88A29009893AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B5AD047F17A88A29009893AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B5AD048417A88A29009893AF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B5AD048517A88A29009893AF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B5AD048717A88A29009893AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5AD048D17A88A29009893AF /* CoreDataServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AD048E17A88A29009893AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B5AD049617A88A29009893AF /* CoreDataServiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataServiceTests-Info.plist"; sourceTree = "<group>"; };
@@ -241,7 +237,6 @@
 				B5AD047F17A88A29009893AF /* AppDelegate.m */,
 				B5AD048417A88A29009893AF /* ViewController.h */,
 				B5AD048517A88A29009893AF /* ViewController.m */,
-				B5AD048717A88A29009893AF /* Images.xcassets */,
 				B5AD047617A88A29009893AF /* Supporting Files */,
 			);
 			name = Demo;
@@ -252,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				B5AD047717A88A29009893AF /* CoreDataService-Info.plist */,
-				B5AD047817A88A29009893AF /* InfoPlist.strings */,
 				B5AD047B17A88A29009893AF /* main.m */,
 				B5AD047D17A88A29009893AF /* CoreDataService-Prefix.pch */,
 			);
@@ -313,7 +307,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B5E7160D189BEC36001E557F /* PBXTargetDependency */,
+				B5E7161018A12D69001E557F /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = CoreDataService;
@@ -393,8 +387,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AD048817A88A29009893AF /* Images.xcassets in Resources */,
-				B5AD047A17A88A29009893AF /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,23 +451,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B5E7160D189BEC36001E557F /* PBXTargetDependency */ = {
+		B5E7161018A12D69001E557F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B5E715D9189BEBAC001E557F /* CoreDataService */;
-			targetProxy = B5E7160C189BEC36001E557F /* PBXContainerItemProxy */;
+			targetProxy = B5E7160F18A12D69001E557F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B5AD047817A88A29009893AF /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5AD047917A88A29009893AF /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5AD049C17A88A29009893AF /* Debug */ = {
@@ -579,6 +560,7 @@
 		B5AD04A217A88A29009893AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -601,6 +583,7 @@
 		B5AD04A317A88A29009893AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
