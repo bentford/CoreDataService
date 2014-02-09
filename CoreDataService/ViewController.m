@@ -87,7 +87,7 @@ typedef enum {
 {
     // this is required for new datastore file to be read from disk
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[GlobalPersistantStoreCoordinator sharedService] reinitializeSharedService];
+        [[GlobalPersistantStoreCoordinator singleton] reinitializeSingleton];
         [[GlobalManagedObjectContext sharedService] reinitializeGlobalContext];
     });
 

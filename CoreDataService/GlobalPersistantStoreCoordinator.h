@@ -12,8 +12,8 @@
 
 @interface GlobalPersistantStoreCoordinator : NSObject 
 
-+ (GlobalPersistantStoreCoordinator *)sharedService;
-- (void)reinitializeSharedService;
++ (GlobalPersistantStoreCoordinator *)singleton;
+- (void)reinitializeSingleton;
 
 - (id)initWithStorePath:(NSString *)storePath;
 

@@ -34,14 +34,14 @@
 }
 
 #pragma mark Singleton
-+ (GlobalPersistantStoreCoordinator *)sharedService {
++ (GlobalPersistantStoreCoordinator *)singleton {
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
         return [[self alloc] initWithStorePath:[GlobalPersistantStoreCoordinator globalDatastoreFilePath]];
     });
 }
 #pragma mark -
 
-- (void)reinitializeSharedService {
+- (void)reinitializeSingleton {
     [self initializeCoordinatorWithPath:[GlobalPersistantStoreCoordinator globalDatastoreFilePath]];
 }
 
@@ -75,7 +75,7 @@
 - (NSManagedObjectContext *)allocContextUsingGlobalPersistentStore {	
     
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
-    [context setPersistentStoreCoordinator:[GlobalPersistantStoreCoordinator sharedService].coordinator];
+    [context setPersistentStoreCoordinator:[GlobalPersistantStoreCoordinator singleton].coordinator];
     
     return context;
 }
@@ -108,7 +108,8 @@
 }
 #pragma mark PrivateMethods
 
-- (void)initializeCoordinatorWithPath:(NSString *)newStorePath {
+- (void)initializeCoordinatorWithPath:(NSString *)newStorePath
+{
     datastorePath = newStorePath;
     NSURL *storeUrl = [NSURL fileURLWithPath:datastorePath];
     

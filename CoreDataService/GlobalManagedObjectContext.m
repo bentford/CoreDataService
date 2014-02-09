@@ -14,7 +14,7 @@
 
 - (id)init {
     if( self = [super init] ) {
-        globalContext = [[GlobalPersistantStoreCoordinator sharedService] allocContextUsingGlobalPersistentStore];
+        globalContext = [[GlobalPersistantStoreCoordinator singleton] allocContextUsingGlobalPersistentStore];
         
         // Used to merge changes into global context when background contexts are working
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(otherContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:nil];
@@ -23,7 +23,7 @@
 }
 
 - (void)reinitializeGlobalContext {
-    globalContext = [[GlobalPersistantStoreCoordinator sharedService] allocContextUsingGlobalPersistentStore];
+    globalContext = [[GlobalPersistantStoreCoordinator singleton] allocContextUsingGlobalPersistentStore];
 }
 
 #pragma mark Singleton
