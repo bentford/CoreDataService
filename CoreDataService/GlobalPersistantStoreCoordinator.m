@@ -17,13 +17,31 @@
 - (BOOL)progressivelyMigrateURL:(NSURL*)sourceStoreURL ofType:(NSString*)type toModel:(NSManagedObjectModel*)finalModel error:(NSError**)error;
 @end
 
-@implementation GlobalPersistantStoreCoordinator {
-    NSPersistentStoreCoordinator *coordinator;
+static NSString *globalDatastoreFilename;
+
+@implementation GlobalPersistantStoreCoordinator
+{
     NSManagedObjectModel *model;
     NSString *datastorePath;
 }
 
-@synthesize coordinator;
++ (void)setGlobalDatastoreFileName:(NSString *)fileName
+{
+    globalDatastoreFilename = fileName;
+}
+
++ (NSString *)globalDatastoreFileName
+{
+    return globalDatastoreFilename;
+}
+
++ (NSString *)globalDatastoreFilePath
+{
+    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filename = [GlobalPersistantStoreCoordinator globalDatastoreFileName];
+    NSString *databaseFilename = [NSString stringWithFormat:@"%@.sqlite", filename];
+	return [cachesDirectory stringByAppendingPathComponent:databaseFilename];
+}
 
 - (id)initWithStorePath:(NSString *)newStorePath {
     if( self = [super init] ) {
@@ -45,27 +63,20 @@
     [self initializeCoordinatorWithPath:[GlobalPersistantStoreCoordinator globalDatastoreFilePath]];
 }
 
-+ (NSString *)globalDatastoreFilePath {
-    
-    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *databaseFilename = [NSString stringWithFormat:@"%@.sqlite", kDatastoreName];
-	return [cachesDirectory stringByAppendingPathComponent:databaseFilename];
-}
-
 - (NSString *)datastorePath {
     return datastorePath;
 }
 
-- (NSManagedObjectModel *)model {
-	
+- (NSManagedObjectModel *)model
+{
     if (model != nil)
         return model;
     
     NSString *modelPath;
     if ([self isRunningInOCUnit])
-        modelPath = [[NSBundle bundleForClass:[self class]] pathForResource:kDatastoreName ofType:@"momd"];
+        modelPath = [[NSBundle bundleForClass:[self class]] pathForResource:globalDatastoreFilename ofType:@"momd"];
     else
-        modelPath = [[NSBundle mainBundle] pathForResource:kDatastoreName ofType:@"momd"];
+        modelPath = [[NSBundle mainBundle] pathForResource:globalDatastoreFilename ofType:@"momd"];
     
     NSURL *modelURL = [[NSURL alloc] initFileURLWithPath:modelPath];
     model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -116,7 +127,7 @@
     NSError *error = nil;
     if( kDebugCoordinator )
         NSLog(@"model version identifiers: %@", [self model].versionIdentifiers);
-    coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self model]];
+    _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self model]];
     
     NSDictionary *options;
     if( kEnableAutomaticMigration )
@@ -134,10 +145,10 @@
         NSLog(@"store meta data: %@", storeMetadata);
     
     
-    BOOL isCompatible = [coordinator.managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:storeMetadata];
+    BOOL isCompatible = [_coordinator.managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:storeMetadata];
     
     if( kDebugCoordinator )
-        NSLog(@"using datafile: %@", kDatastoreName);
+        NSLog(@"using datafile: %@", globalDatastoreFilename);
     
     if( kEnableAutomaticMigration == NO && isCompatible == NO ) {
         NSLog(@"CoreData: persistent store is not compatible with current model. Auto migration is disabled so I'm aborting.");
@@ -152,7 +163,7 @@
         NSLog(@"CoreData: attempting progressive migration");
         
         NSError *progressiveMigrationError = nil;
-        [self progressivelyMigrateURL:storeUrl ofType:NSSQLiteStoreType toModel:coordinator.managedObjectModel error:&progressiveMigrationError];
+        [self progressivelyMigrateURL:storeUrl ofType:NSSQLiteStoreType toModel:_coordinator.managedObjectModel error:&progressiveMigrationError];
         
         if( progressiveMigrationError != nil ) {
             NSLog(@"CoreData: Error progressively migrating persistent store: %@", [progressiveMigrationError localizedDescription]);
@@ -160,7 +171,7 @@
         }
     }
     
-    if( [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error] == nil ) {
+    if( [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error] == nil ) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

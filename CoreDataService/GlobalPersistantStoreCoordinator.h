@@ -8,12 +8,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#define kDatastoreName @"Model"
-
 @interface GlobalPersistantStoreCoordinator : NSObject 
+
+/*
+ Initialize global singleton.
+ **/
++ (void)setGlobalDatastoreFileName:(NSString *)fileName;
 
 + (GlobalPersistantStoreCoordinator *)singleton;
 - (void)reinitializeSingleton;
+
+
+
 
 - (id)initWithStorePath:(NSString *)storePath;
 
@@ -28,5 +34,4 @@
 - (BOOL)dataFileExists;
 - (void)deleteDatastoreFile;
 
-+ (NSString *)globalDatastoreFilePath;
 @end
