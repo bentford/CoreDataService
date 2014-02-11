@@ -66,7 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5E7165B18A12F0F001E557F /* CoreDataService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CoreDataService.app; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E7165B18A12F0F001E557F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E7165E18A12F0F001E557F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5E7166018A12F0F001E557F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B5E7166218A12F0F001E557F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -155,7 +155,7 @@
 		B5E7165C18A12F0F001E557F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5E7165B18A12F0F001E557F /* CoreDataService.app */,
+				B5E7165B18A12F0F001E557F /* Demo.app */,
 				B5E7167C18A12F0F001E557F /* CoreDataServiceTests.xctest */,
 				B5E7169E18A12FA1001E557F /* libCoreDataService.a */,
 			);
@@ -310,7 +310,7 @@
 			);
 			name = Demo;
 			productName = CoreDataService;
-			productReference = B5E7165B18A12F0F001E557F /* CoreDataService.app */;
+			productReference = B5E7165B18A12F0F001E557F /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B5E7167B18A12F0F001E557F /* CoreDataServiceTests */ = {
