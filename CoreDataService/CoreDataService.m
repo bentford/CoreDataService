@@ -333,7 +333,7 @@
     return [CoreDataService context:context makeObjectWithEntityName:NSStringFromClass([self class])];
 }
 
-+ (id)fetchEntityByAttribute:(NSString *)attribute value:(NSString *)value context:(NSManagedObjectContext *)context
++ (id)fetchEntityByAttribute:(NSString *)attribute value:(id)value context:(NSManagedObjectContext *)context
 {
     return [CoreDataService context:context fetchEntity:NSStringFromClass([self class])
                         byAttribute:attribute withValue:value];

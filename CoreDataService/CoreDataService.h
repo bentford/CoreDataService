@@ -49,7 +49,7 @@
 + (id)makeEntityWithContext:(NSManagedObjectContext *)context;
 
 + (NSArray *)fetchAllEntitiesWithContext:(NSManagedObjectContext *)context;
-+ (id)fetchEntityByAttribute:(NSString *)attribute value:(NSString *)value context:(NSManagedObjectContext *)context;
++ (id)fetchEntityByAttribute:(NSString *)attribute value:(id)value context:(NSManagedObjectContext *)context;
 + (NSArray *)fetchEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context;
 + (id)fetchEntityByObjectID:(NSManagedObjectID *)objectID context:(NSManagedObjectContext *)context;
 + (NSSet *)fetchEntitiesByObjectIdSet:(NSSet *)objectIdSet context:(NSManagedObjectContext *)context;
