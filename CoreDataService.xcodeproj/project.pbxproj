@@ -15,7 +15,7 @@
 		B5E7167F18A12F0F001E557F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7165E18A12F0F001E557F /* Foundation.framework */; };
 		B5E7168018A12F0F001E557F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7166218A12F0F001E557F /* UIKit.framework */; };
 		B5E7169818A12F54001E557F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E7169518A12F54001E557F /* AppDelegate.m */; };
-		B5E7169918A12F54001E557F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E7169718A12F54001E557F /* ViewController.m */; };
+		B5E7169918A12F54001E557F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E7169718A12F54001E557F /* MainViewController.m */; };
 		B5E7169F18A12FA1001E557F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7165E18A12F0F001E557F /* Foundation.framework */; };
 		B5E716A418A12FA1001E557F /* CoreDataService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716A318A12FA1001E557F /* CoreDataService.h */; };
 		B5E716A618A12FA1001E557F /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716A518A12FA1001E557F /* CoreDataService.m */; };
@@ -79,8 +79,8 @@
 		B5E7169318A12F54001E557F /* AllManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllManagedObjects.h; sourceTree = "<group>"; };
 		B5E7169418A12F54001E557F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B5E7169518A12F54001E557F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B5E7169618A12F54001E557F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B5E7169718A12F54001E557F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B5E7169618A12F54001E557F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		B5E7169718A12F54001E557F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		B5E7169E18A12FA1001E557F /* libCoreDataService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreDataService.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E716A218A12FA1001E557F /* CoreDataService-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataService-Prefix.pch"; sourceTree = "<group>"; };
 		B5E716A318A12FA1001E557F /* CoreDataService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataService.h; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 				B5E7169318A12F54001E557F /* AllManagedObjects.h */,
 				B5E7169418A12F54001E557F /* AppDelegate.h */,
 				B5E7169518A12F54001E557F /* AppDelegate.m */,
-				B5E7169618A12F54001E557F /* ViewController.h */,
-				B5E7169718A12F54001E557F /* ViewController.m */,
+				B5E7169618A12F54001E557F /* MainViewController.h */,
+				B5E7169718A12F54001E557F /* MainViewController.m */,
 				B5E7166518A12F0F001E557F /* Supporting Files */,
 			);
 			name = Demo;
@@ -408,7 +408,7 @@
 				B5E716DB18A130B8001E557F /* NSRangeExt.m in Sources */,
 				B5E716DA18A130B8001E557F /* NSArray+Ext.m in Sources */,
 				B5E716E018A130F0001E557F /* Person+Ext.m in Sources */,
-				B5E7169918A12F54001E557F /* ViewController.m in Sources */,
+				B5E7169918A12F54001E557F /* MainViewController.m in Sources */,
 				B5E7169818A12F54001E557F /* AppDelegate.m in Sources */,
 				B5E716D518A130A4001E557F /* Model.xcdatamodeld in Sources */,
 				B5E716D218A13098001E557F /* Person.m in Sources */,

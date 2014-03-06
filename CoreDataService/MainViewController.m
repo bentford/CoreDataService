@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ben Ford. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "CoreDataService.h"
 #import "AllManagedObjects.h"
 #import "GCDUtilities.h"
@@ -19,10 +19,10 @@ typedef enum {
     DatastoreLocationWorker,
 } DatastoreLocation;
 
-@interface ViewController()
+@interface MainViewController()
 @end
 
-@implementation ViewController
+@implementation MainViewController
 {
     NSOperationQueue *queue;
 }
