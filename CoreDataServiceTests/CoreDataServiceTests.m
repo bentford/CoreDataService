@@ -22,9 +22,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-// This abstracts the most common CoreData operations into easy to use methods
-// It will logs errors on the console
+
 
 #import <XCTest/XCTest.h>
 
