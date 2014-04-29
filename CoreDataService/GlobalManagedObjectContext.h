@@ -26,6 +26,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define GLOBAL_MOC [GlobalManagedObjectContext sharedService].globalContext
+
 @interface GlobalManagedObjectContext : NSObject {
     NSManagedObjectContext *globalContext;
 }
