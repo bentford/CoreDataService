@@ -61,6 +61,12 @@
 + (NSArray *)arrayOfObjectIDsFromObjects:(NSArray *)managedObjectArray;
 + (NSArray *)arrayOfPropertiesWithName:(NSString *)propertyName fromObjects:(NSArray *)managedObjects skipNulls:(BOOL)skipNulls;
 #pragma mark -
+
+#pragma mark Counting
++ (NSUInteger)context:(NSManagedObjectContext *)context countEntities:(NSString *)entityName;
++ (NSUInteger)context:(NSManagedObjectContext *)context countEntities:(NSString *)entityName
+       withPredicate:(NSPredicate *)thePredicate;
+#pragma mark -
 @end
 
 @interface NSManagedObject(CoreDataService)
@@ -78,4 +84,9 @@
 - (void)deleteEntity;
 
 - (void)refreshEntityAndMergeChanges:(BOOL)mergeChanges;
+
+#pragma mark - Counting
++ (NSUInteger)countAllEntities:(NSManagedObjectContext *)context;
++ (NSUInteger)countEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context;
+#pragma mark -
 @end

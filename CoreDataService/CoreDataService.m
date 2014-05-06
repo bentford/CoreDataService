@@ -328,6 +328,45 @@
     return propertyValues;
 }
 
+#pragma mark - Counting
+
++ (NSUInteger)context:(NSManagedObjectContext *)context countEntities:(NSString *)entityName
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
+    [CoreDataService verifyThreadSafetyForContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:request error:&error];
+    if( error )
+        NSLog(@"CoreData Error (in countEntities:) ++ %@",[error localizedDescription]);
+    
+    return count;
+}
+
++ (NSUInteger)context:(NSManagedObjectContext *)context countEntities:(NSString *)entityName
+        withPredicate:(NSPredicate *)thePredicate
+{
+    context = [CoreDataService useGlobalContextIfNeeded:context];
+    [CoreDataService verifyThreadSafetyForContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context]];
+    
+    [request setPredicate:thePredicate];
+    
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:request error:&error];
+    if( error )
+        NSLog(@"CoreData Error (in countEntities:) ++ %@",[error localizedDescription]);
+    
+    return count;
+}
+
+#pragma mark -
+
 + (void)verifyThreadSafetyForContext:(NSManagedObjectContext *)context
 {
     if( [NSThread isMainThread] == NO && context == [GlobalManagedObjectContext sharedService].globalContext ) {
@@ -403,4 +442,16 @@
 {
     [CoreDataService context:self.managedObjectContext refreshObject:self mergeChanges:mergeChanges];
 }
+
+#pragma mark - Counting
++ (NSUInteger)countAllEntities:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context countEntities:NSStringFromClass([self class])];
+}
+
++ (NSUInteger)countEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
+{
+    return [CoreDataService context:context countEntities:NSStringFromClass([self class]) withPredicate:predicate];
+}
+#pragma mark -
 @end
