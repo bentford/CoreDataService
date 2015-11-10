@@ -382,23 +382,35 @@
 
     return context;
 }
+
++ (NSString *)classNameFromObject:(id)object
+{
+    NSString *className = NSStringFromClass([object class]);
+    if ([className containsString:@"."]) {
+        NSArray *parts = [className componentsSeparatedByString:@"."];
+        if (parts.count > 1) {
+            className = parts[1];
+        }
+    }
+    return className;
+}
 @end
 
 @implementation NSManagedObject(CoreDataService)
 + (id)makeEntityWithContext:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context makeObjectWithEntityName:NSStringFromClass([self class])];
+    return [CoreDataService context:context makeObjectWithEntityName:[CoreDataService classNameFromObject:self]];
 }
 
 + (id)fetchEntityByAttribute:(NSString *)attribute value:(id)value context:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context fetchEntity:NSStringFromClass([self class])
+    return [CoreDataService context:context fetchEntity:[CoreDataService classNameFromObject:self]
                         byAttribute:attribute withValue:value];
 }
 
 + (NSArray *)fetchEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context fetchEntities:NSStringFromClass([self class])
+    return [CoreDataService context:context fetchEntities:[CoreDataService classNameFromObject:self]
                       withPredicate:predicate];
 }
 
@@ -406,7 +418,7 @@
 {
     id object = [CoreDataService context:context fetchEntityByObjectID:objectID];
     if ([object isKindOfClass:[self class]] == NO) {
-        NSLog(@"ERROR: incorrect type fetched: %@ for %@", NSStringFromClass([object class]), NSStringFromClass([self class]));
+        NSLog(@"ERROR: incorrect type fetched: %@ for %@", NSStringFromClass([object class]), [CoreDataService classNameFromObject:self]);
         abort();
     }
     return object;
@@ -424,7 +436,7 @@
 
 + (NSArray *)fetchAllEntitiesWithContext:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context fetchEntities:NSStringFromClass([self class])];
+    return [CoreDataService context:context fetchEntities:[CoreDataService classNameFromObject:self]];
 }
 
 - (void)deleteEntity
@@ -434,7 +446,7 @@
 
 + (void)deleteEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
 {
-    [CoreDataService context:context deleteEntities:NSStringFromClass([self class]) withPredicate:predicate];
+    [CoreDataService context:context deleteEntities:[CoreDataService classNameFromObject:self] withPredicate:predicate];
 }
 
 
@@ -446,12 +458,13 @@
 #pragma mark - Counting
 + (NSUInteger)countAllEntities:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context countEntities:NSStringFromClass([self class])];
+    return [CoreDataService context:context countEntities:[CoreDataService classNameFromObject:self]];
 }
 
 + (NSUInteger)countEntitiesWithPredicate:(NSPredicate *)predicate context:(NSManagedObjectContext *)context
 {
-    return [CoreDataService context:context countEntities:NSStringFromClass([self class]) withPredicate:predicate];
+    return [CoreDataService context:context countEntities:[CoreDataService classNameFromObject:self] withPredicate:predicate];
 }
 #pragma mark -
+
 @end

@@ -67,6 +67,8 @@
 + (NSUInteger)context:(NSManagedObjectContext *)context countEntities:(NSString *)entityName
        withPredicate:(NSPredicate *)thePredicate;
 #pragma mark -
+
++ (NSString *)classNameFromObject:(id)object;
 @end
 
 @interface NSManagedObject(CoreDataService)
