@@ -25,7 +25,6 @@
 		B5E7169818A12F54001E557F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E7169518A12F54001E557F /* AppDelegate.m */; };
 		B5E7169918A12F54001E557F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E7169718A12F54001E557F /* MainViewController.m */; };
 		B5E7169F18A12FA1001E557F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7165E18A12F0F001E557F /* Foundation.framework */; };
-		B5E716A418A12FA1001E557F /* CoreDataService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716A318A12FA1001E557F /* CoreDataService.h */; };
 		B5E716A618A12FA1001E557F /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716A518A12FA1001E557F /* CoreDataService.m */; };
 		B5E716C918A1301A001E557F /* ErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716C118A1301A001E557F /* ErrorUtil.m */; };
 		B5E716CA18A1301A001E557F /* GCDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716C418A1301A001E557F /* GCDUtilities.m */; };
@@ -37,8 +36,6 @@
 		B5E716DB18A130B8001E557F /* NSRangeExt.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716D918A130B8001E557F /* NSRangeExt.m */; };
 		B5E716E018A130F0001E557F /* Person+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E716DF18A130F0001E557F /* Person+Ext.m */; };
 		B5E716E318A1314A001E557F /* libCoreDataService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7169E18A12FA1001E557F /* libCoreDataService.a */; };
-		B5E716FA18A1339A001E557F /* GlobalManagedObjectContext.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716C518A1301A001E557F /* GlobalManagedObjectContext.h */; };
-		B5E716FB18A1339A001E557F /* GlobalPersistantStoreCoordinator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5E716C718A1301A001E557F /* GlobalPersistantStoreCoordinator.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,21 +54,6 @@
 			remoteInfo = CoreDataService;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B5E7169C18A12FA1001E557F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				B5E716FA18A1339A001E557F /* GlobalManagedObjectContext.h in CopyFiles */,
-				B5E716FB18A1339A001E557F /* GlobalPersistantStoreCoordinator.h in CopyFiles */,
-				B5E716A418A12FA1001E557F /* CoreDataService.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B5E7165B18A12F0F001E557F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,7 +345,6 @@
 			buildPhases = (
 				B5E7169A18A12FA1001E557F /* Sources */,
 				B5E7169B18A12FA1001E557F /* Frameworks */,
-				B5E7169C18A12FA1001E557F /* CopyFiles */,
 				B52568471C05F7640019DF2D /* Headers */,
 			);
 			buildRules = (
