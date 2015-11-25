@@ -15,6 +15,8 @@
 		B525684D1C05F7880019DF2D /* CoreDataService.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716A318A12FA1001E557F /* CoreDataService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B525684E1C05F7880019DF2D /* GlobalManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C518A1301A001E557F /* GlobalManagedObjectContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B525684F1C05F7880019DF2D /* GlobalPersistantStoreCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C718A1301A001E557F /* GlobalPersistantStoreCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B52568581C0607410019DF2D /* GlobalMemoryStoreCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = B52568561C0607410019DF2D /* GlobalMemoryStoreCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B52568591C0607410019DF2D /* GlobalMemoryStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = B52568571C0607410019DF2D /* GlobalMemoryStoreCoordinator.m */; };
 		B5E7165F18A12F0F001E557F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7165E18A12F0F001E557F /* Foundation.framework */; };
 		B5E7166118A12F0F001E557F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7166018A12F0F001E557F /* CoreGraphics.framework */; };
 		B5E7166318A12F0F001E557F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7166218A12F0F001E557F /* UIKit.framework */; };
@@ -56,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B52568561C0607410019DF2D /* GlobalMemoryStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMemoryStoreCoordinator.h; sourceTree = "<group>"; };
+		B52568571C0607410019DF2D /* GlobalMemoryStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMemoryStoreCoordinator.m; sourceTree = "<group>"; };
 		B5E7165B18A12F0F001E557F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E7165E18A12F0F001E557F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5E7166018A12F0F001E557F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +204,8 @@
 				B5E716C618A1301A001E557F /* GlobalManagedObjectContext.m */,
 				B5E716C718A1301A001E557F /* GlobalPersistantStoreCoordinator.h */,
 				B5E716C818A1301A001E557F /* GlobalPersistantStoreCoordinator.m */,
+				B52568561C0607410019DF2D /* GlobalMemoryStoreCoordinator.h */,
+				B52568571C0607410019DF2D /* GlobalMemoryStoreCoordinator.m */,
 				B5E716A118A12FA1001E557F /* Supporting Files */,
 			);
 			path = CoreDataService;
@@ -296,6 +302,7 @@
 				B525684C1C05F7880019DF2D /* GCDUtilities.h in Headers */,
 				B525684D1C05F7880019DF2D /* CoreDataService.h in Headers */,
 				B525684E1C05F7880019DF2D /* GlobalManagedObjectContext.h in Headers */,
+				B52568581C0607410019DF2D /* GlobalMemoryStoreCoordinator.h in Headers */,
 				B525684F1C05F7880019DF2D /* GlobalPersistantStoreCoordinator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +370,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RE;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ben Ford";
 				TargetAttributes = {
@@ -439,6 +447,7 @@
 				B5E716CC18A1301A001E557F /* GlobalPersistantStoreCoordinator.m in Sources */,
 				B5E716CB18A1301A001E557F /* GlobalManagedObjectContext.m in Sources */,
 				B5E716C918A1301A001E557F /* ErrorUtil.m in Sources */,
+				B52568591C0607410019DF2D /* GlobalMemoryStoreCoordinator.m in Sources */,
 				B5E716A618A12FA1001E557F /* CoreDataService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +631,7 @@
 		B5E716BB18A12FA2001E557F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/CoreDataService.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataService/CoreDataService-Prefix.pch";
@@ -629,21 +639,27 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataService/CoreDataService-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		B5E716BC18A12FA2001E557F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/CoreDataService.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataService/CoreDataService-Prefix.pch";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataService/CoreDataService-Bridging-Header.h";
 			};
 			name = Release;
 		};
