@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52568481C05F7880019DF2D /* NSArray+Ext.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716D618A130B8001E557F /* NSArray+Ext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B52568491C05F7880019DF2D /* NSRangeExt.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716D818A130B8001E557F /* NSRangeExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684A1C05F7880019DF2D /* ErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C018A1301A001E557F /* ErrorUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684B1C05F7880019DF2D /* GCDSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C218A1301A001E557F /* GCDSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684C1C05F7880019DF2D /* GCDUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C318A1301A001E557F /* GCDUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684D1C05F7880019DF2D /* CoreDataService.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716A318A12FA1001E557F /* CoreDataService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684E1C05F7880019DF2D /* GlobalManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C518A1301A001E557F /* GlobalManagedObjectContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B525684F1C05F7880019DF2D /* GlobalPersistantStoreCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E716C718A1301A001E557F /* GlobalPersistantStoreCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5E7165F18A12F0F001E557F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7165E18A12F0F001E557F /* Foundation.framework */; };
 		B5E7166118A12F0F001E557F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7166018A12F0F001E557F /* CoreGraphics.framework */; };
 		B5E7166318A12F0F001E557F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E7166218A12F0F001E557F /* UIKit.framework */; };
@@ -294,6 +302,24 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B52568471C05F7640019DF2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B52568481C05F7880019DF2D /* NSArray+Ext.h in Headers */,
+				B52568491C05F7880019DF2D /* NSRangeExt.h in Headers */,
+				B525684A1C05F7880019DF2D /* ErrorUtil.h in Headers */,
+				B525684B1C05F7880019DF2D /* GCDSingleton.h in Headers */,
+				B525684C1C05F7880019DF2D /* GCDUtilities.h in Headers */,
+				B525684D1C05F7880019DF2D /* CoreDataService.h in Headers */,
+				B525684E1C05F7880019DF2D /* GlobalManagedObjectContext.h in Headers */,
+				B525684F1C05F7880019DF2D /* GlobalPersistantStoreCoordinator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B5E7165A18A12F0F001E557F /* Demo */ = {
 			isa = PBXNativeTarget;
@@ -338,6 +364,7 @@
 				B5E7169A18A12FA1001E557F /* Sources */,
 				B5E7169B18A12FA1001E557F /* Frameworks */,
 				B5E7169C18A12FA1001E557F /* CopyFiles */,
+				B52568471C05F7640019DF2D /* Headers */,
 			);
 			buildRules = (
 			);
